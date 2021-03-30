@@ -9,15 +9,24 @@ Created on Mon Mar 29 18:33:40 2021
 import numpy as np
 
 # pairwise distance calculator
-def pairwise_distance(X, metric):
+def pairwise_distance(X, metric, Y = None):
     # Assumes input X = (n,1) n i the number of points
     n = X.shape[0]
-    distance_matrix = np.zeros((n, n))
-    
-    for i in range(n):
-        for j in range(i,n):
-            distance_matrix[i,j] = metric(X[i], X[j])
-            distance_matrix[j,i] = distance_matrix[i,j]
+    if Y is None:
+        distance_matrix = np.zeros((n, n))
+        
+        for i in range(n):
+            for j in range(i,n):
+                distance_matrix[i,j] = metric(X[i], X[j])
+                distance_matrix[j,i] = distance_matrix[i,j]
+    else:
+        m = Y.shape[0]
+        distance_matrix = np.zeros((n, m))
+        
+        for i in range(n):
+            for j in range(m):
+                distance_matrix[i,j] = metric(X[i], Y[j])
+        
     
     return distance_matrix
 
@@ -64,5 +73,8 @@ def nLCS(X,Y):
     l = lcs(X,Y)
     
     return l /np.sqrt(m*n)
+
+def add_spaces(X):
+    return np.array([word + ' ' for word in X])
 
 

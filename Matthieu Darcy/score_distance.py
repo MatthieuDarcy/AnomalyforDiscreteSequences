@@ -5,6 +5,7 @@ Created on Mon Mar 29 23:33:12 2021
 @author: matth
 """
 import numpy as np
+from helper_functions import pairwise_distance
 
 # Compute the distance to the nearest k neighbor
 
@@ -25,4 +26,10 @@ def distance_clusters(D, C, M ):
         distance[cluster] =  D[cluster][:, m]
     return distance
         
+def assign_to_cluster(X_test, M, metric):
+    # Compute the similarity
+    dist = pairwise_distance(X_test, metric, Y = M)
+
+    assign = np.argmax(dist, axis = 1)
     
+    return assign, np.max(dist, axis = -1)
