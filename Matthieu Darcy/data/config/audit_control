@@ -1,0 +1,5 @@
+dir:/bsmlogs
+flags:all
+minfree:10
+naflags:all
+# change the flags to "ex" for the intrusion demo

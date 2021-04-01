@@ -1,0 +1,25 @@
+BSM Configuration
+------------------
+BSM audit logs were created on the inside target Solaris host
+named pascal. 
+
+BSM auditing was started using the command
+	auditd
+and it was stopped using the command
+	audit -t
+
+Configuration files on pascal from pascal's /etc/security directory
+are provided in this directory.
+The following files are included in this directory.
+	audit_class
+	audit_control
+	audit_event
+	audit_startup
+	audit_user 
+
+These configuration files are fairly standard, except for 
+the "audit_startup" script.  This was modified to ensure that 
+the following processes were audited: sendmail, inetd, cron, and rpcbind.
+
+The raw binary BSM audit file is provided along with an ascii
+version of this file created with praudit.
